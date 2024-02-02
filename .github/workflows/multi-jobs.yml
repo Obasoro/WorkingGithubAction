@@ -16,7 +16,7 @@ jobs:
           uses: actions/upload-artifact@v4
           with:
             name: dragon_artifcat
-            path: dragon txt
+            path: dragon.txt
 
         - name: Sleeping Mode
           run: sleep 30
