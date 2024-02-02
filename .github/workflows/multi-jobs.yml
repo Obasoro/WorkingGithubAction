@@ -33,5 +33,5 @@ jobs:
           run: cat dragon.txt
 
         - name: Deploying
-          run: echo deploying
+          run: echo "deploying"
 
