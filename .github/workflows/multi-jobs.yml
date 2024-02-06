@@ -43,7 +43,7 @@ jobs:
         steps:
         - uses: actions/download-artifact@v4
           with:
-            name: dragon-artifact
+            name: dragon_artifact
         - name: Display structure of downloaded files
           run: ls -R
 
