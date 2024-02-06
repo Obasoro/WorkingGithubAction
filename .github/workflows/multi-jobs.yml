@@ -15,7 +15,7 @@ jobs:
         - name: Upload Artifact
           uses: actions/upload-artifact@v4
           with:
-            name: dragon_artifcat
+            name: dragon_artifact
             path: dragon.txt
 
         - name: Sleeping Mode
@@ -31,7 +31,7 @@ jobs:
 
         - uses: actions/download-artifact@v4
           with:
-            name: dragon.txt
+            name: dragon_artifact
 
         - name: Test file Exist
           run: grep -i "dragon" dragon.txt
@@ -43,7 +43,7 @@ jobs:
         steps:
         - uses: actions/download-artifact@v4
           with:
-            name: dragon.txt
+            name: dragon-artifact
         - name: Display structure of downloaded files
           run: ls -R
 
