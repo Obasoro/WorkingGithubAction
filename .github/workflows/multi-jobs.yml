@@ -31,7 +31,7 @@ jobs:
 
         - uses: actions/download-artifact@v4
           with:
-            name: dragon_artifcat
+            name: dragon.txt
 
         - name: Test file Exist
           run: grep -i "dragon" dragon.txt
@@ -43,7 +43,7 @@ jobs:
         steps:
         - uses: actions/download-artifact@v4
           with:
-            name: dragon_artifcat
+            name: dragon.txt
         - name: Display structure of downloaded files
           run: ls -R
 
