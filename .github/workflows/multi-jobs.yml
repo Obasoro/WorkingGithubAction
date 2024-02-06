@@ -15,7 +15,7 @@ jobs:
         - name: Upload Artifact
           uses: actions/upload-artifact@v4
           with:
-            name: dragon_artifcat
+            name: dragon_artifact
             path: dragon.txt
 
         - name: Sleeping Mode
@@ -24,14 +24,14 @@ jobs:
 
     test_job_2:
         needs: build_job_1
-        runs-on: ubuntus-latest
+        runs-on: ubuntu-latest
         steps:
         - name: Sleep for 10s
           run: sleep 10
 
         - uses: actions/download-artifact@v4
           with:
-            name: dragon_artifcat
+            name: dragon_artifact
 
         - name: Test file Exist
           run: grep -i "dragon" dragon.txt
@@ -43,7 +43,7 @@ jobs:
         steps:
         - uses: actions/download-artifact@v4
           with:
-            name: dragon_artifcat
+            name: dragon_artifact
         - name: Display structure of downloaded files
           run: ls -R
 
