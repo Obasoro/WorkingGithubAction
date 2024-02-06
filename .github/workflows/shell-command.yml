@@ -1,0 +1,24 @@
+name: Shell Commands
+
+on: 
+  #push:
+  pull_request:
+
+jobs:
+  run-shell-cmd:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: List the root filesystem
+      run: ls -l
+    
+    - name: run series of cmds
+      run: |
+        mkdir obasoro
+        node -v
+    - name: ENV Displays
+      run: |
+         echo $GITHUB_SHA
+         echo $GITHUB_REPOSITORY
+         echo $GITHUB_TOKEN
+         printenv

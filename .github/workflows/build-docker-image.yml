@@ -14,14 +14,14 @@ jobs:
       
      steps:
        - name: Checkout
-         uses: actions/checkout@v1
+         uses: actions/checkout@v3
 
        - name: Build Docker Image
          run: docker build -t $TAG .
 
        - name: Login to gHCR
          run: | 
-           echo $CR_PAT | docker login ghcr.io -u USERNAME --password-stdin
+           echo $CR_PAT | docker login ghcr.io -u $USER --password-stdin
            docker tag $TAG ${{ env.REGISTRY }}/$USER/$TAG:${{ env.VERSION }}
            docker push ${{ env.REGISTRY }}/$USER/$TAG:${{ env.VERSION }}
 
@@ -35,7 +35,7 @@ jobs:
             severity: 'CRITICAL,HIGH'
 
        - name: Upload the scan result to Github security-checks
-         uses: github/codeql-action/uplpoad-sarif@v2
+         uses: github/codeql-action/upload-sarif@v2
          with:
             sarif_file: 'trivy-image-results.sarif'
             category: 'image'

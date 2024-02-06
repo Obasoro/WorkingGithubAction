@@ -1,0 +1,25 @@
+name: Play with Actions
+
+on: [push]
+
+jobs:
+   play-with-actions: 
+     runs-on: ubuntu-latest
+     
+     steps:
+     - name: Get ENVs
+       run: |
+         pwd
+         echo $GITHUB_SHA;
+         echo $GITHUB_REPOSITORY
+         echo $GITHUB_WORKSPACE
+         echo "${{ github.token }}"
+         ls -l
+   
+     - name: Checkout
+       uses: actions/checkout@v1
+       
+     - name: List Directory After Checkout
+       run: |  
+         ls -l
+#        git fetch

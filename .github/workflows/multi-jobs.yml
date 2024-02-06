@@ -1,0 +1,55 @@
+name: Multi_jobs
+
+on: push
+
+jobs: 
+    build_job_1:
+        runs-on: ubuntu-latest
+        steps:
+        - name: Installation of Cowsay
+          run: sudo apt-get install cowsay -y
+
+        - name: Execute Cowsay from CMD
+          run: cowsay -f dragon "Run for cover, I AM A DRAGON" >> dragon.txt
+
+        - name: Upload Artifact
+          uses: actions/upload-artifact@v4
+          with:
+            name: dragon_artifact
+            path: dragon.txt
+
+        - name: Sleeping Mode
+          run: sleep 30
+        
+
+    test_job_2:
+        needs: build_job_1
+        runs-on: ubuntu-latest
+        steps:
+        - name: Sleep for 10s
+          run: sleep 10
+
+        - uses: actions/download-artifact@v4
+          with:
+            name: dragon_artifact
+
+        - name: Test file Exist
+          run: grep -i "dragon" dragon.txt
+
+
+    deploy_job_3:
+        needs: [test_job_2]
+        runs-on: ubuntu-latest
+        steps:
+        - uses: actions/download-artifact@v4
+          with:
+            name: dragon_artifact
+        - name: Display structure of downloaded files
+          run: ls -R
+
+        - name: Read File
+          run: cat dragon.txt
+
+        - name: Deploying
+          run: echo "deploying"
+
