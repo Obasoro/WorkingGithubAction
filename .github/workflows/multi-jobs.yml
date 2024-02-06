@@ -48,7 +48,7 @@ jobs:
           run: ls -R
 
         - name: Read File
-          run: cat dragon_artifact
+          run: cat dragon.txt
 
         - name: Deploying
           run: echo "deploying"
