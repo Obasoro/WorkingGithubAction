@@ -3,23 +3,18 @@ name: Matrix Configuration
 on:
   push:
    workflow_dispatch:
-    
 
 jobs:
-  deploy-on-ubuntu:
-    runs-on: ubuntu-latest
+  deploy:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, centos,  windows-latest, ubuntu-20.04]
+        images: [hello-world, alpine]
+    runs-on: ${{ matrix.os }}
     steps:
      - name: Echo Docker Details
        run: docker info
 
-     - name: Run Images
-       run: docker run hello-world
+     - name: Run Images on ${{  matrix.os }}
+       run: docker run ${{ matrix.images }}
 
-  deploy-on-windows:
-    runs-on: windows-latest
-    steps:
-     - name: Echo Docker Details
-       run: docker info
-
-     - name: Run Images
-       run: docker run hello-world 
