@@ -10,6 +10,12 @@ jobs:
       matrix:
         os: [ubuntu-latest, centos7,  windows-latest, ubuntu-20.04]
         images: [hello-world, alpine]
+        exclude:
+          - image: alpine
+            os: centos7
+        include:
+          - image: amd64/alpine
+            os: ubuntu-22.04
     runs-on: ${{ matrix.os }}
     steps:
      - name: Echo Docker Details
