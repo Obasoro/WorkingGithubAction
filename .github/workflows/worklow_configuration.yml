@@ -1,7 +1,7 @@
 name: Exploring workflow activities
 on:
     workflow_dispatch:
-    schedule:
+    #schedule:
     push:
         # branches-ignore:
         #     - feature/* # feature/add-music, feature/updateImages
